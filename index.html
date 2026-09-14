@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#49345c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Katalog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Sklep dla znajomych</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="icon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="theme.css">
+    <script src="shop-config.js"></script>
+  </head>
+  <body class="storefront">
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <a class="shop-brand" href="./index.html"><span class="brand-icon" aria-hidden="true">s.</span><span>Sklep dla znajomych<small>Blisko Ciebie. Na co dzień.</small></span></a>
+        </div>
+        <button class="install-button" id="installButton" type="button" hidden title="Zainstaluj aplikację na telefonie">
+          <span aria-hidden="true">+</span>
+          <span>Zainstaluj apkę na telefonie</span>
+        </button>
+      </header>
+
+      <section class="friend-note" aria-label="Informacje o sklepie">
+        <div class="hero-copy">
+          <p class="eyebrow">TWÓJ LOKALNY SKLEP</p>
+          <h1>Dobre rzeczy.<br><em>Po znajomości.</em></h1>
+          <p>Ulubione produkty do domu i dla Ciebie. Wybierz, dodaj do koszyka i daj mi znać — resztę ustalimy razem.</p>
+          <a class="hero-link" href="#catalog">Zobacz produkty <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 400 300" fill="none"><circle cx="210" cy="151" r="132" fill="#60496f"/><ellipse cx="218" cy="261" rx="123" ry="16" fill="#342441" opacity=".4"/><g transform="rotate(-9 170 160)"><rect x="80" y="102" width="157" height="155" rx="16" fill="#ece3d6"/><path d="M122 113V80a37 37 0 0 1 74 0v33" stroke="#ece3d6" stroke-width="13"/><path d="M117 176h78M117 193h48" stroke="#b1a090" stroke-width="5" stroke-linecap="round"/></g><g transform="rotate(12 280 210)"><rect x="224" y="172" width="102" height="90" rx="16" fill="#f5b077"/><path d="M247 183v-22a28 28 0 0 1 56 0v22" stroke="#f5b077" stroke-width="10"/><path d="m265 218 11 10 20-24" stroke="#49345c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g><path d="m309 57 5 17 17 5-17 5-5 17-5-17-17-5 17-5Z" fill="#f5b077"/><circle cx="67" cy="66" r="6" fill="#c5b3d4"/><path d="m62 219 3 10 10 3-10 3-3 10-3-10-10-3 10-3Z" fill="#c5b3d4"/></svg>
+          <span class="art-label">Małe zakupy, dużo wygody.</span>
+        </div>
+      </section>
+      <div class="benefits" aria-label="Jak kupować">
+        <p><span aria-hidden="true">01</span> Wybierasz produkty</p>
+        <p><span aria-hidden="true">02</span> Wysyłasz koszyk e-mailem</p>
+        <p><span aria-hidden="true">03</span> Darmowa dostawa · gotówka lub BLIK</p>
+      </div>
+
+      <section class="status-row" id="catalog" aria-live="polite">
+        <div class="catalog-heading"><h2>Na naszej półce</h2>
+        <span id="productCounter">0/30 produktów</span></div>
+        <button class="cart-toggle" id="cartToggle" type="button" aria-controls="cartPanel" aria-expanded="false">Koszyk: 0 szt. / 0,00 zł</button>
+      </section>
+
+      <section class="cart-panel" id="cartPanel" aria-label="Koszyk zakupowy" hidden>
+        <header class="cart-header">
+          <div>
+            <h2 class="cart-title">
+              <span class="cart-title-icon" aria-hidden="true">🛒</span>
+              <span>Twój koszyk</span>
+            </h2>
+            <p id="cartSummary">0 produktów, 0 szt.</p>
+          </div>
+          <div class="cart-actions">
+            <button class="primary-button" id="sendOrderButton" type="button">Wyślij zamówienie</button>
+            <button class="text-button danger" id="clearCartButton" type="button">Wyczyść</button>
+          </div>
+        </header>
+        <section class="order-contact">
+          <div class="order-contact-grid">
+            <label>
+              <span>Imię i nazwisko</span>
+              <input id="customerName" type="text" placeholder="Np. Jan Kowalski">
+            </label>
+            <label>
+              <span>Kontakt</span>
+              <input id="customerContact" type="text" placeholder="Telefon albo e-mail">
+            </label>
+          </div>
+          <label>
+            <span>Uwagi do zamówienia</span>
+            <textarea id="customerNote" rows="3" placeholder="Np. odbiór po 18:00"></textarea>
+          </label>
+          <p class="order-status" id="orderStatus">Ładowanie trybu zamówień...</p>
+        </section>
+        <div class="cart-items" id="cartItems"></div>
+        <footer class="cart-total">
+          <span>Razem</span>
+          <strong id="cartTotal">0,00 zł</strong>
+        </footer>
+      </section>
+
+      <section class="product-grid" id="productGrid" aria-label="Lista produktów"></section>
+
+      <section class="empty-state" id="emptyState" hidden>
+        <h2>Brak produktów</h2>
+        <p>Katalog jest pusty albo chwilowo nie udało się pobrać listy produktów.</p>
+      </section>
+      <footer class="shop-footer"><strong>Sklep dla znajomych</strong><span>Po zamówieniu skontaktuję się z Tobą w sprawie odbioru.</span></footer>
+    </main>
+
+    <dialog class="image-dialog" id="imageDialog">
+      <button class="icon-button image-close" id="closeImageButton" type="button" title="Zamknij">
+        <span aria-hidden="true">x</span>
+      </button>
+      <img id="largeImage" alt="">
+      <p id="largeImageCaption"></p>
+    </dialog>
+
+    <script src="app.js?v=20260914-order-source"></script>
+  </body>
+</html>

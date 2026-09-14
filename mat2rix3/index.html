@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#145c63">
+    <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+    <title>Panel admina - katalog produktow</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../theme.css">
+    <script src="../shop-config.js"></script>
+  </head>
+  <body>
+    <main class="app-shell admin-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Panel admina</p>
+          <h1>Katalog</h1>
+        </div>
+        <a class="admin-link" href="../index.html">Podglad</a>
+      </header>
+
+      <section class="admin-layout">
+        <form class="admin-form" id="adminForm">
+          <header class="admin-section-header">
+            <div>
+              <h2 id="formTitle">Dodaj produkt</h2>
+              <p>Maksymalnie 30 produktow. Zdjecia zostana zapisane w pliku JSON.</p>
+            </div>
+          </header>
+
+          <input id="productId" type="hidden">
+
+          <label>
+            <span>Nazwa</span>
+            <input id="nameInput" maxlength="60" required placeholder="np. Kawa ziarnista">
+          </label>
+
+          <label>
+            <span>Cena</span>
+            <input id="priceInput" inputmode="decimal" required placeholder="np. 39,99">
+          </label>
+
+          <label>
+            <span>Opis</span>
+            <textarea id="descriptionInput" maxlength="1200" rows="7" placeholder="Dluzszy opis produktu"></textarea>
+          </label>
+
+          <label>
+            <span>Stan magazynowy</span>
+            <input id="stockInput" type="number" min="1" max="30" value="30" required>
+          </label>
+
+          <label>
+            <span>Zdjecie</span>
+            <input id="imageInput" type="file" accept="image/*">
+          </label>
+
+          <div class="preview" id="imagePreview" aria-label="Podglad zdjecia"></div>
+
+          <div class="admin-actions">
+            <button class="text-button danger" id="deleteButton" type="button" hidden>Usun</button>
+            <button class="text-button" id="clearButton" type="button">Wyczysc</button>
+            <button class="primary-button" type="submit">Zapisz produkt</button>
+          </div>
+        </form>
+
+        <section class="admin-products">
+          <section class="admin-api-box">
+            <div>
+              <h3>Magazyn</h3>
+              <p id="adminApiStatus">Podlacz API, aby synchronizowac stany magazynowe.</p>
+            </div>
+            <div class="admin-api-actions">
+              <label class="admin-password-field">
+                <span>Haslo admina magazynu</span>
+                <input id="adminPassword" type="password" placeholder="Wpisz haslo">
+              </label>
+              <button class="text-button" id="savePasswordButton" type="button">Polacz</button>
+              <button class="text-button" id="adminApiTestButton" type="button">Sprawdz API</button>
+              <button class="text-button" id="syncInventoryButton" type="button">Synchronizuj stany</button>
+            </div>
+          </section>
+
+          <div class="admin-columns">
+            <section class="inventory-column">
+              <header class="admin-section-header">
+                <div>
+                  <h2>Stan magazynowy</h2>
+                  <p>Stan bazowy, sprzedano i aktualnie zostalo.</p>
+                </div>
+                <button class="primary-button" id="downloadInventoryButton" type="button">Pobierz CSV</button>
+              </header>
+              <section class="summary-grid" id="inventorySummary"></section>
+              <section class="inventory-section">
+                <div class="inventory-table-wrap" id="inventoryTableWrap"></div>
+              </section>
+            </section>
+
+            <section class="catalog-column">
+              <header class="admin-section-header">
+                <div>
+                  <h2>Edycja produktow</h2>
+                  <p id="productCounter">0/30 produktow</p>
+                </div>
+                <button class="primary-button" id="downloadButton" type="button">Pobierz products.json</button>
+              </header>
+
+              <div class="admin-toolbar">
+                <button class="text-button" id="reloadButton" type="button">Wczytaj z products.json</button>
+                <label class="file-import">
+                  <span>Import JSON</span>
+                  <input id="importInput" type="file" accept="application/json,.json">
+                </label>
+              </div>
+
+              <p class="admin-empty" id="loadStatus">Ładowanie produktów...</p>
+              <div class="admin-list" id="adminList"></div>
+            </section>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="../admin.js?v=20260511-no-orders"></script>
+  </body>
+</html>

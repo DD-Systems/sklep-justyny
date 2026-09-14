@@ -1,0 +1,17 @@
+{
+  "name": "Sklep dla znajomych",
+  "short_name": "Sklep",
+  "description": "Prosty mobilny katalog produktów ze zdjęciami i cenami.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#faf8f5",
+  "theme_color": "#49345c",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
